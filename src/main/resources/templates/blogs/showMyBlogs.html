@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/header :: header">
+</head>
+
+<body>
+	<div th:replace="fragments/header :: navbar"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 mb-4" th:each="blog: ${blogs}">
+				<div class="card" style="width:100%; box-shadow: 20px 20px 50px grey;">
+					<img class="card-img-top" th:src="${blog.imgUrl}" alt="Blog image" style="width: 100%; height: 200px;">
+					<div class="card-body">
+						<h4 class="card-title" th:text="${blog.title}"></h4>
+						<h6 class="card-subtitle mb-2 text-muted"><i>Posted On: <span th:text="${#dates.format(blog.createdDate, 'dd-MM-yyyy')}"></span></i></h6>
+						<span th:if="${blog.description.length()>20}">
+    						<p class="card-text" th:text="${#strings.substring(blog.description,0,30).concat('...')}"></p>
+    					</span>
+    					<span th:if="${blog.description.length()<20}">
+							<p class="card-text" th:text="${#strings.substring(blog.description,0,blog.description.length())}"></p>
+    					</span>
+    					<br>
+						<a th:href="@{'/blogs/' + ${blog.id}}" class="btn btn-primary card-link">See Full Blog</a>
+						<a th:href="@{'/blogs/my_blogs/edit_blog/' + ${blog.id}}" class="btn btn-warning card-link">Edit Blog</a>
+						<a th:href="@{'/blogs/my_blogs/delete_blog/' + ${blog.id}}" class="btn btn-danger card-link">Delete Blog</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

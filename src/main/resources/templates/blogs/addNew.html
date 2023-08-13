@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/header :: header">
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: navbar"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="card mx-auto" style="width: 75%">
+			<div class="card-body">
+				<div class="card-header text-center border-bottom">
+					<h2 class="fw-bold">Add New Blog</h2>
+				</div>
+				<div class="card-body">
+					<form th:action="@{/blogs/add_blog}" method="post" th:object="${blog}">
+						<div class="form-group mb-3">
+							<label class="form-label">Title</label>
+							<input class="form-control" type="text" name="title" id="title" placeholder="Enter title"
+								th:field="*{title}" />
+							<p th:errors="*{title}" class="text-danger" th:if="${#fields.hasErrors('title')}"></p>
+						</div>
+						<div class="form-group mb-3">
+							<label class="form-label">Image URL</label>
+							<input class="form-control" type="text" name="imgUrl" id="imgUrl"
+								placeholder="Enter image url" th:field="*{imgUrl}"/>
+							<p th:errors="*{imgUrl}" class="text-danger" th:if="${#fields.hasErrors('imgUrl')}"></p>
+						</div>
+						<div class="form-group mb-3">
+							<label class="form-label">Content</label>
+							<textarea style="height: 100px;" class="form-control" type="te" name="description"
+								id="description" placeholder="Enter content" th:field="*{description}"></textarea>
+						</div>
+						<p th:errors="*{description}" class="text-danger" th:if="${#fields.hasErrors('description')}">
+						</p>
+						<div class="form-group mb-3 text-center">
+							<button class="btn btn-primary" type="submit">Add</button>
+						</div>
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

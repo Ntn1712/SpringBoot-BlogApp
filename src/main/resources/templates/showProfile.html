@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/header :: header">
+</head>
+
+<body>
+	<div th:replace="fragments/header :: navbar"></div>
+	<br>
+	<br>
+	<br>
+	
+	<div class="container">
+		<div class="card text-center mx-auto" style="width:500px; box-shadow: 20px 20px 50px grey;">
+			<div class="card-body">
+				<div class="card-title border-bottom">
+					<h3 class="fw-bold">Profile</h3>
+				</div>
+				<div class="card-body border-bottom mb-3">
+					<p class="mb-0 fw-bold">Full Name</p>
+					<p class="card-text text-secondary" th:text="${user.name}"></p>
+					<p class="mb-0 fw-bold">Email</p>
+					<p class="card-text text-secondary" th:text="${user.email}"></p>
+				</div>
+				<a th:href="@{'/user/edit_profile/' + ${user.id}}" class="btn btn-info card-link">Edit Profile</a>
+				<a th:href="@{'/user/profile/updatePassword/' + ${user.id}}" class="btn btn-warning card-link">Change
+					Password</a>
+				<a th:href="@{'/user/delete_profile/' + ${user.id}}" class="btn btn-danger card-link">Delete Profile</a>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>

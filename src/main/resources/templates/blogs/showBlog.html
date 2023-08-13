@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="fragments/header :: header">
+</head>
+
+<body>
+	<div th:replace="fragments/header :: navbar"></div>
+	<br>
+	<br>
+	<br>
+	<div class="container">
+		<div class="row g-5">
+			<div class="col-lg-8 md-8">
+				<div class="container">
+					<div class="row border-bottom">
+						<div class="col-lg-6 md-6 text-start">
+							<h2 class=" mb-4 fst-italic" th:text="${blog.title}"></h2>
+						</div>
+						<div class="col-lg-6 md-6 text-end">
+							<p class="text-secondary fst-italic mb-0">By <span th:text="${blog.author.getName()}"></span></p>
+							<p class="fst-italic text-secondary">Posted On: <span
+									th:text="${#dates.format(blog.createdDate, 'dd-MM-yyyy')}"></span></p>
+									
+						</div>
+
+					</div>
+					
+					<p class="mt-3" th:text="${blog.description}"></p>
+				</div>
+			</div>
+			<div class="col-lg-4 md-4">
+				<div class="position-sticky" style="top: 2rem;">
+					
+					<div class="p-4 bg-light rounded">
+						<h4 class="fst-italic">Check other blogs</h4>
+						<ol class="list-unstyled mb-0" th:each="bg: ${blogs}">
+							<span th:if="${blog.id!=bg.id}">
+								<li><a th:href="@{'/blogs/' + ${bg.id}}"><span th:text="${bg.title}"></span></a></li>
+							</span>
+						</ol>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
